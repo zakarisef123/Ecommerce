@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Boutique — AQUAZUR</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.page-hero{background:var(--cream);border-bottom:1px solid var(--border);padding:52px 32px;text-align:center}
+.page-hero .label{margin-bottom:14px}
+.page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,60px);font-weight:300;letter-spacing:-1px}
+.page-hero h1 em{font-style:italic}
+.breadcrumb{margin-top:16px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone)}
+.breadcrumb a{color:var(--stone);text-decoration:none}
+.breadcrumb a:hover{color:var(--gold)}
+
+.shop-wrap{max-width:var(--max);margin:0 auto;padding:0 32px 100px}
+.filters{display:flex;justify-content:center;gap:0;border-bottom:1px solid var(--border);margin:52px 0 48px}
+.f-btn{padding:12px 28px;border:none;background:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--stone);cursor:pointer;font-weight:500;font-family:'Jost',sans-serif;position:relative;transition:color var(--t)}
+.f-btn::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform var(--t)}
+.f-btn:hover{color:var(--charcoal)}
+.f-btn.active{color:var(--charcoal)}
+.f-btn.active::after{transform:scaleX(1)}
+
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px 24px}
+.prod-card{cursor:pointer}
+.prod-card:hover .prod-img-in{transform:scale(1.05)}
+.prod-card:hover .prod-over{opacity:1}
+.prod-img{position:relative;aspect-ratio:3/4;background:var(--cream);overflow:hidden;margin-bottom:16px;border-radius:var(--radius)}
+.prod-img-in{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:64px;background:linear-gradient(160deg,var(--blush),var(--cream));transition:transform .55s cubic-bezier(.4,0,.2,1)}
+.prod-img-in img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.prod-over{position:absolute;inset:0;background:rgba(28,26,24,.28);opacity:0;transition:opacity var(--t);display:flex;align-items:flex-end;padding:16px}
+.prod-quick{width:100%;padding:12px;background:var(--ivory);border:none;font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:500;cursor:pointer;color:var(--charcoal);transition:all var(--t);font-family:'Jost',sans-serif;border-radius:var(--radius)}
+.prod-quick:hover{background:var(--gold);color:#fff}
+.p-badge{position:absolute;top:12px;left:12px;padding:3px 9px;font-size:9px;letter-spacing:1.8px;text-transform:uppercase;font-weight:600;border-radius:2px}
+.badge-new{background:var(--teal);color:#fff}
+.badge-sale{background:var(--coral);color:#fff}
+.badge-popular{background:var(--blush);color:var(--charcoal);border:1px solid var(--border)}
+.p-cat{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:6px}
+.p-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--charcoal);margin-bottom:9px;line-height:1.2}
+.p-rating{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.stars{color:var(--gold);font-size:11px;letter-spacing:1.5px}
+.revs{font-size:11px;color:var(--pebble)}
+.p-price{display:flex;align-items:center;gap:9px}
+.price-c{font-size:15px;font-weight:500}
+.price-o{font-size:13px;color:var(--pebble);text-decoration:line-through}
+
+.empty-state{text-align:center;padding:80px 0;color:var(--stone);grid-column:1/-1}
+.empty-state p{font-size:14px;font-weight:300;margin-top:8px}
+
+@media(max-width:1024px){.prod-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.shop-wrap{padding:0 16px 72px}.filters{overflow-x:auto;justify-content:flex-start}.f-btn{padding:12px 18px}}
+</style>
+</head>
+<body>
+
+<div class="announce">Livraison offerte dès 80 € &nbsp;·&nbsp; Retours 30 jours &nbsp;·&nbsp; <a href="#">🌊 Nouveautés Été 2026</a></div>
+
+<header class="site-header" id="main-header">
+  <div class="header-inner">
+    <div class="nav-left"><nav class="site-nav"><a href="boutique.html" class="active">Collections</a><a href="boutique.html">Nouveautés</a><a href="contact.html">L'Esprit</a></nav></div>
+    <a href="index.html" class="logo"><span class="logo-main">AQUAZUR</span><span class="logo-sub">L'Évasion Aquatique</span></a>
+    <div class="nav-right"><nav class="site-nav"><a href="contact.html">Nos Valeurs</a><a href="contact.html">Contact</a></nav>
+      <div class="header-actions">
+        <button class="btn-icon" onclick="openSearch()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7.5"/><path d="M20.5 20.5l-4-4"/></svg></button>
+        <button class="btn-icon" onclick="openCart()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cart-badge" id="cart-badge">0</span></button>
+        <button class="btn-icon hamburger" onclick="toggleMenu()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="label">Notre Sélection</div>
+  <h1>La <em>Boutique</em></h1>
+  <div class="breadcrumb"><a href="index.html">Accueil</a> &nbsp;/&nbsp; Collections</div>
+</div>
+
+<div class="shop-wrap">
+  <div class="filters">
+    <button class="f-btn active" data-filter="all">Tout</button>
+    <button class="f-btn" data-filter="nouveautes">Nouveautés</button>
+    <button class="f-btn" data-filter="promo">Offres</button>
+    <button class="f-btn" data-filter="populaire">Best-sellers</button>
+  </div>
+  <div class="prod-grid" id="prod-grid"></div>
+</div>
+
+<footer class="site-footer"><div class="footer-inner">
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="index.html" class="logo"><span class="logo-main">AQUAZUR</span><span class="logo-sub">L'Évasion Aquatique</span></a><p>Des pièces pensées pour l'été aquatique. Plage, piscine, bord de mer — avec style.</p><div class="footer-socials"><a href="#" class="footer-social">f</a><a href="#" class="footer-social">ig</a><a href="#" class="footer-social">p</a></div></div>
+    <div class="footer-col"><h5>Collections</h5><ul><li><a href="boutique.html">Nouveautés</a></li><li><a href="boutique.html">Best-sellers</a></li><li><a href="boutique.html">Bouées de Plage</a></li><li><a href="boutique.html">Seaglides</a></li></ul></div>
+    <div class="footer-col"><h5>Service</h5><ul><li><a href="contact.html">Notre Histoire</a></li><li><a href="contact.html">Livraison</a></li><li><a href="contact.html">Retours</a></li></ul></div>
+    <div class="footer-col"><h5>Légal</h5><ul><li><a href="#">CGV</a></li><li><a href="#">Confidentialité</a></li><li><a href="#">Mentions Légales</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 AQUAZUR — Tous droits réservés</p><div class="pay-row"><span class="pay-chip">VISA</span><span class="pay-chip">MC</span><span class="pay-chip">AMEX</span><span class="pay-chip">PAYPAL</span><span class="pay-chip">APPLE PAY</span></div></div>
+</div></footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-head"><h3>Votre Sélection <span id="cart-label" style="font-family:'Jost';font-size:13px;color:var(--stone);font-weight:400"></span></h3><button class="cart-close" onclick="closeCart()">✕</button></div>
+  <div class="cart-body" id="cart-body"></div>
+  <div class="cart-foot" id="cart-foot" style="display:none"><div class="cart-sub"><span>Sous-total</span><strong id="cart-total"></strong></div><p class="cart-note">Livraison calculée à l'étape suivante</p><button class="btn-checkout" onclick="checkout()">Finaliser la commande</button></div>
+</div>
+<div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span id="toast-msg"></span></div>
+
+<script src="products.js"></script>
+<script src="_cart.js"></script>
+<script>
+function starsHTML(n){return'★'.repeat(Math.floor(n))+(n%1>=.5?'½':'')}
+function renderProducts(filter){
+  const list=filter==='all'?PRODUCTS:PRODUCTS.filter(p=>{const f=Array.isArray(p.filter)?p.filter:[p.filter];return f.includes(filter)});
+  const grid=document.getElementById('prod-grid');
+  if(!list.length){grid.innerHTML='<div class="empty-state"><p>Aucune pièce dans cette sélection.</p></div>';return}
+  grid.innerHTML=list.map(p=>`
+  <div class="prod-card" onclick="window.location='produit.html?id=${p.id}'">
+    <div class="prod-img">
+      <div class="prod-img-in">${p.emoji}<img src="${p.img}" alt="${p.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>
+      ${p.badge?`<span class="p-badge badge-${p.badge}">${p.badge==='new'?'Nouveau':p.badge==='sale'?'Offre':'Favori'}</span>`:''}
+      <div class="prod-over"><button class="prod-quick" onclick="event.stopPropagation();addToCart(${p.id})">Ajouter à la sélection</button></div>
+    </div>
+    <div class="p-cat">${p.category}</div>
+    <div class="p-rating"><span class="stars">${starsHTML(p.stars)}</span><span class="revs">${p.reviews} avis</span></div>
+    <div class="p-name">${p.name}</div>
+    <div class="p-price"><span class="price-c">${fmt(p.price)} €</span>${p.original?`<span class="price-o">${fmt(p.original)} €</span>`:''}</div>
+  </div>`).join('');
+}
+document.querySelectorAll('.f-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts(btn.dataset.filter);
+  });
+});
+renderProducts('all');
+renderCart();
+window.addEventListener('scroll',()=>{
+  document.getElementById('main-header').classList.toggle('scrolled',scrollY>60);
+});
+</script>
+</body></html>
