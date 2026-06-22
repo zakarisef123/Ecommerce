@@ -153,7 +153,8 @@ body{font-family:'Poppins',sans-serif;background:var(--ivory);color:var(--charco
 .pay-chip{padding:4px 9px;border:1px solid rgba(255,124,0,.2);border-radius:5px;font-size:9.5px;color:rgba(255,179,71,.5);letter-spacing:1px;font-weight:600}
 
 @media(max-width:1024px){.cart-page{grid-template-columns:1fr}.order-summary{position:static}.footer-grid{grid-template-columns:1fr 1fr;gap:36px}}
-@media(max-width:640px){.cart-page{padding:40px 16px 72px}.page-cart-item{grid-template-columns:80px 1fr auto;gap:12px}.pci-img{width:80px;height:80px}}
+@media(max-width:768px){.header-inner{grid-template-columns:auto 1fr auto;padding:0 16px}.nav-left{display:none}.hamburger{display:flex}.logo-main{font-size:20px;letter-spacing:2px}.footer-grid{grid-template-columns:1fr;gap:28px}.cart-drawer{width:100vw}}
+@media(max-width:640px){.cart-page{padding:24px 12px 72px}.page-cart-item{grid-template-columns:72px 1fr auto;gap:10px}.pci-img{width:72px;height:72px}}
 </style>
 </head>
 <body>
@@ -167,6 +168,7 @@ body{font-family:'Poppins',sans-serif;background:var(--ivory);color:var(--charco
     <div class="nav-right"><nav class="site-nav"><a href="contact.html">Nos Valeurs</a><a href="contact.html">Contact</a></nav>
       <div class="header-actions">
         <button class="btn-icon" onclick="openCart()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cart-badge" id="cart-badge"></span></button>
+        <button class="btn-icon hamburger" onclick="toggleMenu()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
       </div>
     </div>
   </div>
@@ -358,8 +360,7 @@ function applyPromo(){
 
 renderCart();
 renderPageCart();
-window.addEventListener('scroll',()=>{
-  document.getElementById('main-header').classList.toggle('scrolled',scrollY>60);
-});
+window.addEventListener('scroll',()=>{document.getElementById('main-header').classList.toggle('scrolled',scrollY>60);});
+function toggleMenu(){const nav=document.querySelector('.nav-left');if(!nav)return;if(nav.style.display==='flex'){nav.style.display='';}else{nav.style.cssText='display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:var(--ivory);padding:20px 24px;border-bottom:2px solid var(--border);gap:4px;z-index:99;';}}
 </script>
 </body></html>
