@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -19,7 +20,8 @@
 .cart-items-head span{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone)}
 
 .page-cart-item{display:grid;grid-template-columns:100px 1fr auto;gap:20px;align-items:start;padding:24px 0;border-bottom:1px solid var(--border)}
-.pci-img{width:100px;height:100px;background:var(--cream);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:34px}
+.pci-img{width:100px;height:100px;border-radius:var(--radius);overflow:hidden;position:relative;background:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9InNreSIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGRjZCMzUiLz48c3RvcCBvZmZzZXQ9IjQwJSIgc3RvcC1jb2xvcj0iI0ZGQjM0NyIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0ZGRDcwMCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJzZWEiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDBCNEQ4Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDA3N0I2Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9InNuZCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGNEQwM0YiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNFODkyNEEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNza3kpIi8+PGVsbGlwc2UgY3g9IjI1MCIgY3k9IjQ1IiByeD0iMzAiIHJ5PSIzMCIgZmlsbD0iI0ZGRTA2NiIgb3BhY2l0eT0iMC45Ii8+PHJlY3QgeT0iMTEwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjU1IiBmaWxsPSJ1cmwoI3NlYSkiLz48cmVjdCB5PSIxNjUiIHdpZHRoPSIzMDAiIGhlaWdodD0iMzUiIGZpbGw9InVybCgjc25kKSIvPjwvc3ZnPg==') center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.pci-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .pci-name{font-family:'Nunito',sans-serif;font-size:19px;font-weight:400;margin-bottom:4px}
 .pci-cat{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:12px}
 .pci-price{font-size:14px;color:var(--stone);margin-bottom:14px}
@@ -40,7 +42,15 @@
 
 /* SUMMARY SIDE */
 .order-summary{position:sticky;top:88px;background:var(--cream) var(--tropical-bg) repeat;background-size:180px 180px;border:1px solid var(--border);border-radius:var(--radius);padding:32px;overflow:hidden}
-.os-title{font-family:'Nunito',sans-serif;font-size:22px;font-weight:400;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.os-title{font-family:'Nunito',sans-serif;font-size:22px;font-weight:400;margin-bottom:16px}
+.os-items{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.os-item{display:flex;align-items:center;gap:12px}
+.os-item-img{width:52px;height:52px;border-radius:8px;overflow:hidden;position:relative;background:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9InNreSIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGRjZCMzUiLz48c3RvcCBvZmZzZXQ9IjQwJSIgc3RvcC1jb2xvcj0iI0ZGQjM0NyIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0ZGRDcwMCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJzZWEiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDBCNEQ4Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDA3N0I2Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9InNuZCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGNEQwM0YiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNFODkyNEEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNza3kpIi8+PHJlY3QgeT0iMTEwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjU1IiBmaWxsPSJ1cmwoI3NlYSkiLz48cmVjdCB5PSIxNjUiIHdpZHRoPSIzMDAiIGhlaWdodD0iMzUiIGZpbGw9InVybCgjc25kKSIvPjwvc3ZnPg==') center/cover;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.os-item-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.os-item-qty{position:absolute;top:-4px;right:-4px;background:var(--gold);color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.os-item-info{flex:1;min-width:0}
+.os-item-name{font-size:13px;font-weight:500;color:var(--charcoal);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.os-item-price{font-size:12px;color:var(--stone)}
 .os-line{display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:12px;color:var(--stone)}
 .os-line strong{color:var(--charcoal);font-weight:500}
 .os-free{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:var(--radius);padding:10px 14px;font-size:12px;color:#166534;font-weight:500;margin:16px 0;text-align:center}
@@ -89,6 +99,7 @@
   <div class="cart-items-side" id="cart-items-side"></div>
   <div class="order-summary" id="order-summary" style="display:none">
     <div class="os-title">Résumé de commande</div>
+    <div class="os-items" id="os-items"></div>
     <div class="os-line"><span>Sous-total</span><strong id="os-sub">—</strong></div>
     <div class="os-line"><span>Livraison</span><strong id="os-ship">—</strong></div>
     <div class="os-free" id="os-free-msg" style="display:none">✓ Livraison offerte !</div>
@@ -148,13 +159,27 @@ function renderPageCart(){
   document.getElementById('os-ship').textContent=shipping===0?'Offerte':fmt(shipping)+' €';
   document.getElementById('os-free-msg').style.display=sub>=80?'block':'none';
   document.getElementById('os-total').textContent=fmt(total)+' €';
+  document.getElementById('os-items').innerHTML=cart.map(item=>{
+    const p=getProductById(item.id);
+    return`<div class="os-item">
+      <div class="os-item-img" style="position:relative">
+        ${p&&p.img?`<img src="${p.img}" alt="${item.name}" onerror="this.style.display='none'">`:''}
+        ${item.emoji}
+        <span class="os-item-qty">${item.qty}</span>
+      </div>
+      <div class="os-item-info">
+        <div class="os-item-name">${item.name}</div>
+        <div class="os-item-price">${fmt(item.price*item.qty)} €</div>
+      </div>
+    </div>`;
+  }).join('');
 
   side.innerHTML=`
     <div class="cart-items-head"><h2>${cart.length} pièce${cart.length>1?'s':''} sélectionnée${cart.length>1?'s':''}</h2><span>${fmt(sub)} €</span></div>`+
     cart.map(item=>{
       const p=getProductById(item.id);
       return`<div class="page-cart-item">
-        <div class="pci-img">${item.emoji}</div>
+        <div class="pci-img">${p&&p.img?`<img src="${p.img}" alt="${item.name}" onerror="this.style.display='none'">`:''}${item.emoji}</div>
         <div>
           <div class="pci-cat">${p?p.category:''}</div>
           <div class="pci-name">${item.name}</div>
