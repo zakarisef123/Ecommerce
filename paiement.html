@@ -3,7 +3,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Paiement Sécurisé — AQUAZUR</title>
+<title>Paiement Sécurisé — summertime</title>
 <link rel="stylesheet" href="_base.css">
 <style>
 .page-hero{background:var(--cream) var(--tropical-bg) repeat;background-size:180px 180px;border-bottom:1px solid var(--border);padding:44px 32px;text-align:center}
@@ -109,7 +109,7 @@
 <header class="site-header" id="main-header">
   <div class="header-inner">
     <div class="nav-left"><nav class="site-nav"><a href="boutique.html">Collections</a><a href="boutique.html?filter=nouveautes">Nouveautés</a><a href="contact.html">L'Esprit</a></nav></div>
-    <a href="index.html" class="logo"><span class="logo-main">AQUAZUR</span><span class="logo-sub">L'Évasion Aquatique</span></a>
+    <a href="index.html" class="logo"><span class="logo-main">summertime</span><span class="logo-sub">L'Évasion Aquatique</span></a>
     <div class="nav-right"><nav class="site-nav"><a href="contact.html">Contact</a></nav>
       <div class="header-actions">
         <button class="btn-icon" onclick="openCart()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cart-badge" id="cart-badge">0</span></button>
@@ -418,7 +418,7 @@ function payWithApple(){
   if(!window.ApplePaySession||!ApplePaySession.canMakePayments()){
     showToast('Apple Pay non disponible sur cet appareil ou navigateur.');return;
   }
-  const req={countryCode:'FR',currencyCode:'EUR',supportedNetworks:['visa','masterCard','amex'],merchantCapabilities:['supports3DS'],total:{label:'AQUAZUR',amount:getTotal().toFixed(2)}};
+  const req={countryCode:'FR',currencyCode:'EUR',supportedNetworks:['visa','masterCard','amex'],merchantCapabilities:['supports3DS'],total:{label:'summertime',amount:getTotal().toFixed(2)}};
   const session=new ApplePaySession(3,req);
   session.onpaymentauthorized=e=>{session.completePayment(ApplePaySession.STATUS_SUCCESS);confirmOrder('Apple Pay');};
   session.begin();
