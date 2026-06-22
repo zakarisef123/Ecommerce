@@ -57,11 +57,15 @@ body{font-family:'Poppins',sans-serif;background:var(--ivory);color:var(--charco
 
 /* GRID */
 .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px 24px}
-.prod-card{cursor:pointer;background:var(--ivory);border-radius:16px;padding:10px 10px 14px;border:2px solid var(--border);transition:box-shadow var(--t),transform var(--t)}
+.prod-card{cursor:pointer;background:linear-gradient(180deg,#1FA9E0 0%,#1FA9E0 14%,#FF8C00 60%,#FFC93C 100%);border-radius:18px;padding:0;border:4px solid #FF7C00;overflow:hidden;transition:box-shadow var(--t),transform var(--t)}
+.prod-card>.p-cat,.prod-card>.p-rating,.prod-card>.p-name,.prod-card>.p-price{padding-left:16px;padding-right:16px}
+.prod-card>.p-cat{padding-top:14px}
+.prod-card>.p-price{padding-bottom:16px}
+.prod-card .revs{color:#2C1810}.prod-card .p-name{color:#2C1810}.prod-card .price-c{color:#7A2E00}
 .prod-card:hover{box-shadow:0 8px 32px rgba(255,124,0,.18);transform:translateY(-3px)}
 .prod-card:hover .prod-img-in{transform:scale(1.05)}
 .prod-card:hover .prod-over{opacity:1}
-.prod-img{position:relative;aspect-ratio:3/4;overflow:hidden;margin-bottom:16px;border-radius:12px;background:var(--cream)}
+.prod-img{position:relative;aspect-ratio:1/1;overflow:hidden;margin-bottom:14px;background:#fff}
 .prod-img-in{position:absolute;inset:0;overflow:hidden;transition:transform .55s cubic-bezier(.4,0,.2,1)}
 .prod-img-in img{width:100%;height:100%;object-fit:cover;display:block}
 .prod-over{position:absolute;inset:0;background:rgba(44,24,16,.25);opacity:0;transition:opacity var(--t);display:flex;align-items:flex-end;padding:16px}
@@ -138,7 +142,7 @@ body{font-family:'Poppins',sans-serif;background:var(--ivory);color:var(--charco
 
 @media(max-width:1024px){.prod-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr;gap:36px}}
 @media(max-width:768px){.header-inner{grid-template-columns:auto 1fr auto;padding:0 16px}.nav-left{display:none}.hamburger{display:flex}.logo-main{font-size:20px;letter-spacing:2px}.footer-grid{grid-template-columns:1fr;gap:28px}.cart-drawer{width:100vw}}
-@media(max-width:640px){.shop-wrap{padding:0 16px 72px}.filters{overflow-x:auto;justify-content:flex-start}.f-btn{padding:12px 18px}}
+@media(max-width:640px){.shop-wrap{padding:0 16px 72px}.filters{overflow-x:auto;justify-content:flex-start}.f-btn{padding:12px 18px}.prod-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:16px;padding-bottom:16px}.prod-grid .prod-card{flex:0 0 74vw;scroll-snap-align:start}}
 </style>
 </head>
 <body>
