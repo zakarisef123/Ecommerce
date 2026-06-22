@@ -99,7 +99,7 @@ body{font-family:'Poppins',sans-serif;background:var(--ivory);color:var(--charco
 .cart-items{display:flex;flex-direction:column;gap:18px}
 .cart-item{display:grid;grid-template-columns:78px 1fr auto;gap:12px;align-items:start;padding-bottom:18px;border-bottom:1px solid var(--border)}
 .cart-item:last-child{border-bottom:none}
-.ci-img{width:80px;height:80px;border-radius:12px;flex-shrink:0;border:3px solid var(--gold-lt);overflow:hidden;background:var(--cream)}
+.ci-img{width:80px;height:80px;border-radius:12px;flex-shrink:0;border:3px solid var(--gold-lt);overflow:hidden;background:var(--cream);position:relative}
 .ci-img img{width:100%;height:100%;object-fit:cover;display:block}
 .ci-name{font-size:13px;font-weight:600;margin-bottom:3px}
 .ci-price{font-size:12px;color:var(--gold-dk);font-weight:600;margin-bottom:10px}
@@ -142,7 +142,14 @@ body{font-family:'Poppins',sans-serif;background:var(--ivory);color:var(--charco
 
 @media(max-width:1024px){.prod-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr;gap:36px}}
 @media(max-width:768px){.header-inner{grid-template-columns:auto 1fr auto;padding:0 16px}.nav-left{display:none}.hamburger{display:flex}.logo-main{font-size:20px;letter-spacing:2px}.footer-grid{grid-template-columns:1fr;gap:28px}.cart-drawer{width:100vw}}
-@media(max-width:640px){.shop-wrap{padding:0 16px 72px}.filters{overflow-x:auto;justify-content:flex-start}.f-btn{padding:12px 18px}.prod-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:16px;padding-bottom:16px}.prod-grid .prod-card{flex:0 0 74vw;scroll-snap-align:start}}
+@media(max-width:640px){
+  .shop-wrap{padding:0 0 72px}
+  .filters{overflow-x:auto;justify-content:flex-start;padding:0 16px}
+  .f-btn{padding:12px 18px;white-space:nowrap}
+  .page-hero{padding:36px 16px}
+  .prod-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:12px;padding:0 16px 16px;max-width:none;margin:0}
+  .prod-grid .prod-card{flex:0 0 72vw;scroll-snap-align:start}
+}
 </style>
 </head>
 <body>
@@ -307,7 +314,7 @@ function renderProducts(filter){
   grid.innerHTML = list.map(p=>`
   <div class="prod-card" onclick="window.location='produit.html?id=${p.id}'">
     <div class="prod-img">
-      <div class="prod-img-in">${p.emoji}<img src="${p.img}" alt="${p.name}" onerror="this.style.display='none'"></div>
+      <div class="prod-img-in"><img src="${p.img}" alt="${p.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></div>
       ${p.badge?`<span class="p-badge badge-${p.badge}">${p.badge==='new'?'Nouveau':'Offre'}</span>`:''}
       <div class="prod-over"><button class="prod-quick" onclick="event.stopPropagation();addToCart(${p.id})">Ajouter au panier</button></div>
     </div>
