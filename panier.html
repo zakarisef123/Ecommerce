@@ -277,7 +277,7 @@ function renderCart(){
   body.innerHTML='<div class="cart-items">'+cart.map(i=>{
     const p=getProduct(i.id);
     return`<div class="cart-item">
-      <div class="ci-img">${p&&p.img?`<img src="${p.img}" alt="${i.name}" onerror="this.style.display='none'">`:''}${i.emoji}</div>
+      <div class="ci-img">${p&&p.img?`<img src="${p.img}" alt="${i.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`:''}</div>
       <div>
         <div class="ci-name">${i.name}</div>
         <div class="ci-price">${fmt(i.price)} €</div>
@@ -314,8 +314,7 @@ function renderPageCart(){
     const p=getProduct(item.id);
     return`<div class="os-item">
       <div class="os-item-thumb" style="position:relative">
-        ${p&&p.img?`<img src="${p.img}" alt="${item.name}" onerror="this.style.display='none'">`:''}
-        ${item.emoji}
+        ${p&&p.img?`<img src="${p.img}" alt="${item.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`:''}
         <span class="os-item-qty-badge">${item.qty}</span>
       </div>
       <div class="os-item-info">
@@ -331,8 +330,7 @@ function renderPageCart(){
       const p=getProduct(item.id);
       return`<div class="page-cart-item">
         <div class="pci-img">
-          ${p&&p.img?`<img src="${p.img}" alt="${item.name}" onerror="this.style.display='none'">`:''}
-          ${item.emoji}
+          ${p&&p.img?`<img src="${p.img}" alt="${item.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`:``}
         </div>
         <div class="pci-info">
           <div class="pci-cat">${p?p.category:''}</div>
