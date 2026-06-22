@@ -3,7 +3,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title id="page-title">Produit — AQUAZUR</title>
+<title id="page-title">Produit — summertime</title>
 <link rel="stylesheet" href="_base.css">
 <style>
 .breadcrumb{max-width:var(--max);margin:0 auto;padding:20px 32px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone)}
@@ -97,7 +97,7 @@
 <header class="site-header" id="main-header">
   <div class="header-inner">
     <div class="nav-left"><nav class="site-nav"><a href="boutique.html">Collections</a><a href="boutique.html?filter=nouveautes">Nouveautés</a><a href="contact.html">L'Esprit</a></nav></div>
-    <a href="index.html" class="logo"><span class="logo-main">AQUAZUR</span><span class="logo-sub">L'Évasion Aquatique</span></a>
+    <a href="index.html" class="logo"><span class="logo-main">summertime</span><span class="logo-sub">L'Évasion Aquatique</span></a>
     <div class="nav-right"><nav class="site-nav"><a href="contact.html">Nos Valeurs</a><a href="contact.html">Contact</a></nav>
       <div class="header-actions">
         <button class="btn-icon" onclick="openSearch()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7.5"/><path d="M20.5 20.5l-4-4"/></svg></button>
@@ -161,12 +161,12 @@
 
 <footer class="site-footer"><div class="footer-inner">
   <div class="footer-grid">
-    <div class="footer-brand"><a href="index.html" class="logo"><span class="logo-main">AQUAZUR</span><span class="logo-sub">L'Évasion Aquatique</span></a><p>Des pièces pensées pour l'été aquatique. Plage, piscine, bord de mer — avec style.</p><div class="footer-socials"><a href="#" class="footer-social">f</a><a href="#" class="footer-social">ig</a><a href="#" class="footer-social">p</a></div></div>
+    <div class="footer-brand"><a href="index.html" class="logo"><span class="logo-main">summertime</span><span class="logo-sub">L'Évasion Aquatique</span></a><p>Des pièces pensées pour l'été aquatique. Plage, piscine, bord de mer — avec style.</p><div class="footer-socials"><a href="#" class="footer-social">f</a><a href="#" class="footer-social">ig</a><a href="#" class="footer-social">p</a></div></div>
     <div class="footer-col"><h5>Collections</h5><ul><li><a href="boutique.html?filter=nouveautes">Nouveautés</a></li><li><a href="boutique.html">Best-sellers</a></li><li><a href="boutique.html">Bouées de Plage</a></li></ul></div>
     <div class="footer-col"><h5>Service</h5><ul><li><a href="contact.html">Notre Histoire</a></li><li><a href="contact.html">Livraison</a></li><li><a href="contact.html">Retours</a></li></ul></div>
     <div class="footer-col"><h5>Légal</h5><ul><li><a href="#">CGV</a></li><li><a href="#">Confidentialité</a></li><li><a href="#">Mentions Légales</a></li></ul></div>
   </div>
-  <div class="footer-bottom"><p>© 2026 AQUAZUR — Tous droits réservés</p><div class="pay-row"><span class="pay-chip">VISA</span><span class="pay-chip">MC</span><span class="pay-chip">AMEX</span><span class="pay-chip">PAYPAL</span></div></div>
+  <div class="footer-bottom"><p>© 2026 summertime — Tous droits réservés</p><div class="pay-row"><span class="pay-chip">VISA</span><span class="pay-chip">MC</span><span class="pay-chip">AMEX</span><span class="pay-chip">PAYPAL</span></div></div>
 </div></footer>
 
 <div class="overlay" id="overlay" onclick="closeCart()"></div>
@@ -189,8 +189,8 @@ const id=parseInt(params.get('id'))||1;
 const p=PRODUCTS.find(x=>x.id===id)||PRODUCTS[0];
 currentId=p.id;
 
-document.title=p.name+' — AQUAZUR';
-document.getElementById('page-title').textContent=p.name+' — AQUAZUR';
+document.title=p.name+' — summertime';
+document.getElementById('page-title').textContent=p.name+' — summertime';
 document.getElementById('bc-name').textContent=p.name;
 // Images carousel
 const imgs = p.images && p.images.length ? p.images : [p.img];
