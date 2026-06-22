@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -181,5 +182,6 @@ renderCart();
 window.addEventListener('scroll',()=>{
   document.getElementById('main-header').classList.toggle('scrolled',scrollY>60);
 });
+function toggleMenu(){const nav=document.querySelector('.nav-left');if(!nav)return;if(nav.style.display==='flex'){nav.style.display='';}else{nav.style.cssText='display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:var(--ivory);padding:20px 24px;border-bottom:2px solid var(--border);gap:4px;z-index:99;';}}
 </script>
 </body></html>
