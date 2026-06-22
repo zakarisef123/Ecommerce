@@ -78,7 +78,16 @@
 .price-o{font-size:12px;color:var(--pebble);text-decoration:line-through}
 
 @media(max-width:1024px){.product-layout{grid-template-columns:1fr;gap:40px}.related-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:640px){.product-layout,.related{padding-left:16px;padding-right:16px}.breadcrumb{padding-left:16px;padding-right:16px}.related-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:16px;padding-bottom:16px}.related-grid .prod-card{flex:0 0 74vw;scroll-snap-align:start}}
+@media(max-width:640px){
+  .product-layout,.related{padding-left:16px;padding-right:16px}
+  .breadcrumb{padding-left:16px;padding-right:16px}
+  .related{padding-left:0;padding-right:0;overflow:hidden}
+  .related-head{padding-left:16px;padding-right:16px}
+  .related-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:12px;padding:0 16px 16px;max-width:none}
+  .related-grid .prod-card{flex:0 0 72vw;scroll-snap-align:start}
+  .prod-thumbs{gap:8px}
+  .prod-thumb{width:58px;height:58px}
+}
 </style>
 </head>
 <body>
@@ -220,7 +229,7 @@ const related=PRODUCTS.filter(x=>x.id!==p.id).slice(0,4);
 document.getElementById('related-grid').innerHTML=related.map(r=>`
 <div class="prod-card" onclick="window.location='produit.html?id=${r.id}'">
   <div class="prod-img">
-    <div class="prod-img-in">${r.emoji}<img src="${r.img}" alt="${r.name}"></div>
+    <div class="prod-img-in"><img src="${r.img}" alt="${r.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>
     <div class="prod-over"><button class="prod-quick" onclick="event.stopPropagation();addToCart(${r.id})">Ajouter</button></div>
   </div>
   <div class="p-cat">${r.category}</div>
