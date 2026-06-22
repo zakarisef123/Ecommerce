@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -60,7 +61,7 @@
 .prod-card:hover .prod-img-in{transform:scale(1.05)}
 .prod-card:hover .prod-over{opacity:1}
 .prod-img{position:relative;aspect-ratio:3/4;background:var(--cream);overflow:hidden;margin-bottom:14px;border-radius:var(--radius)}
-.prod-img-in{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:56px;background:linear-gradient(160deg,var(--cream),var(--sand));transition:transform .55s cubic-bezier(.4,0,.2,1)}
+.prod-img-in{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:56px;background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><defs><linearGradient id='sky' x1='0' y1='0' x2='0' y2='1'><stop offset='0%25' stop-color='%23FF6B35'/><stop offset='40%25' stop-color='%23FFB347'/><stop offset='100%25' stop-color='%23FFD700'/></linearGradient><linearGradient id='sea' x1='0' y1='0' x2='0' y2='1'><stop offset='0%25' stop-color='%2300B4D8'/><stop offset='100%25' stop-color='%230077B6'/></linearGradient><linearGradient id='snd' x1='0' y1='0' x2='0' y2='1'><stop offset='0%25' stop-color='%23F4D03F'/><stop offset='100%25' stop-color='%23E8924A'/></linearGradient></defs><rect width='300' height='200' fill='url(%23sky)'/><ellipse cx='250' cy='45' rx='30' ry='30' fill='%23FFE066' opacity='0.9'/><ellipse cx='250' cy='45' rx='42' ry='42' fill='%23FFD700' opacity='0.3'/><rect y='110' width='300' height='55' fill='url(%23sea)'/><path d='M0 115 Q25 108 50 115 Q75 122 100 115 Q125 108 150 115 Q175 122 200 115 Q225 108 250 115 Q275 122 300 115 L300 170 L0 170Z' fill='%2390E0EF' opacity='0.5'/><rect y='165' width='300' height='35' fill='url(%23snd)'/><line x1='30' y1='100' x2='30' y2='168' stroke='%236B4226' stroke-width='4'/><path d='M30 100 Q5 85 15 70 Q30 90 30 100Z' fill='%232D7A2D'/><path d='M30 100 Q55 85 45 68 Q30 88 30 100Z' fill='%2338A838'/></svg>") center/cover no-repeat;transition:transform .55s cubic-bezier(.4,0,.2,1)}
 .prod-img-in img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .prod-over{position:absolute;inset:0;background:rgba(28,26,24,.28);opacity:0;transition:opacity var(--t);display:flex;align-items:flex-end;padding:14px}
 .prod-quick{width:100%;padding:10px;background:var(--ivory);border:none;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;cursor:pointer;color:var(--charcoal);transition:all var(--t);font-family:'Poppins',sans-serif;border-radius:var(--radius)}
