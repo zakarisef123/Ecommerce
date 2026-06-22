@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mon Panier — AQUAZUR</title>
+<link rel="stylesheet" href="_base.css">
+<style>
+.page-hero{background:var(--cream) var(--tropical-bg) repeat;background-size:180px 180px;border-bottom:1px solid var(--border);padding:44px 32px;text-align:center}
+.page-hero .label{margin-bottom:12px}
+.page-hero h1{font-family:'Nunito',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:0px}
+.breadcrumb{margin-top:14px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone)}
+.breadcrumb a{color:var(--stone);text-decoration:none}
+
+.cart-page{max-width:var(--max);margin:0 auto;padding:52px 32px 100px;display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:start}
+
+/* ITEMS SIDE */
+.cart-items-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:1px solid var(--border);margin-bottom:28px}
+.cart-items-head h2{font-family:'Nunito',sans-serif;font-size:24px;font-weight:300}
+.cart-items-head span{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone)}
+
+.page-cart-item{display:grid;grid-template-columns:100px 1fr auto;gap:20px;align-items:start;padding:24px 0;border-bottom:1px solid var(--border)}
+.pci-img{width:100px;height:100px;background:var(--cream);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:34px}
+.pci-name{font-family:'Nunito',sans-serif;font-size:19px;font-weight:400;margin-bottom:4px}
+.pci-cat{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:12px}
+.pci-price{font-size:14px;color:var(--stone);margin-bottom:14px}
+.pci-qty{display:flex;align-items:center;gap:0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;width:fit-content}
+.pci-qty .qty-btn{width:36px;height:36px;border:none;border-right:1px solid var(--border);background:none;cursor:pointer;font-size:15px;color:var(--stone);transition:all var(--t);display:flex;align-items:center;justify-content:center}
+.pci-qty .qty-btn:last-child{border-right:none;border-left:1px solid var(--border)}
+.pci-qty .qty-btn:hover{background:var(--blush);color:var(--charcoal)}
+.pci-qty .qty-val{font-size:13px;font-weight:500;min-width:44px;text-align:center}
+.pci-right{text-align:right}
+.pci-total{font-size:17px;font-weight:600;margin-bottom:8px}
+.pci-remove{background:none;border:none;cursor:pointer;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--pebble);font-family:'Poppins',sans-serif;transition:color var(--t)}
+.pci-remove:hover{color:var(--charcoal)}
+
+.empty-cart{text-align:center;padding:80px 0}
+.empty-cart .ec-emoji{font-size:56px;opacity:.35;margin-bottom:20px}
+.empty-cart h2{font-family:'Nunito',sans-serif;font-size:28px;font-weight:300;margin-bottom:12px}
+.empty-cart p{color:var(--stone);font-size:14px;margin-bottom:32px;font-weight:300}
+
+/* SUMMARY SIDE */
+.order-summary{position:sticky;top:88px;background:var(--cream) var(--tropical-bg) repeat;background-size:180px 180px;border:1px solid var(--border);border-radius:var(--radius);padding:32px;overflow:hidden}
+.os-title{font-family:'Nunito',sans-serif;font-size:22px;font-weight:400;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.os-line{display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:12px;color:var(--stone)}
+.os-line strong{color:var(--charcoal);font-weight:500}
+.os-free{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:var(--radius);padding:10px 14px;font-size:12px;color:#166534;font-weight:500;margin:16px 0;text-align:center}
+.os-total{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;border-top:1px solid var(--border);margin-top:8px;margin-bottom:24px}
+.os-total span{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone)}
+.os-total strong{font-family:'Nunito',sans-serif;font-size:28px;font-weight:400}
+.os-trust{margin-top:20px;display:flex;flex-direction:column;gap:8px}
+.os-trust-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--stone)}
+.os-trust-item span{font-size:15px}
+
+.promo-row{display:flex;gap:0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:20px}
+.promo-row input{flex:1;padding:11px 14px;background:transparent;border:none;font-size:13px;outline:none;font-family:'Poppins',sans-serif;color:var(--charcoal)}
+.promo-row input::placeholder{color:var(--pebble)}
+.promo-row button{padding:11px 16px;background:var(--charcoal);border:none;color:#fff;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;cursor:pointer;font-family:'Poppins',sans-serif;transition:background var(--t);white-space:nowrap}
+.promo-row button:hover{background:var(--gold)}
+
+@media(max-width:1024px){.cart-page{grid-template-columns:1fr}.order-summary{position:static}}
+@media(max-width:640px){.cart-page{padding:40px 16px 72px}.page-cart-item{grid-template-columns:80px 1fr auto;gap:12px}.pci-img{width:80px;height:80px}}
+</style>
+</head>
+<body>
+
+<div class="announce">Livraison offerte dès 80 € &nbsp;·&nbsp; Retours 30 jours &nbsp;·&nbsp; <a href="boutique.html">Continuer mes achats</a></div>
+
+<header class="site-header" id="main-header">
+  <div class="header-inner">
+    <div class="nav-left"><nav class="site-nav"><a href="boutique.html">Collections</a><a href="boutique.html?filter=nouveautes">Nouveautés</a><a href="contact.html">L'Esprit</a></nav></div>
+    <a href="index.html" class="logo"><span class="logo-main">AQUAZUR</span><span class="logo-sub">L'Évasion Aquatique</span></a>
+    <div class="nav-right"><nav class="site-nav"><a href="contact.html">Nos Valeurs</a><a href="contact.html">Contact</a></nav>
+      <div class="header-actions">
+        <button class="btn-icon" onclick="openSearch()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7.5"/><path d="M20.5 20.5l-4-4"/></svg></button>
+        <button class="btn-icon" onclick="openCart()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cart-badge" id="cart-badge">0</span></button>
+        <button class="btn-icon hamburger" onclick="toggleMenu()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="label">Récapitulatif</div>
+  <h1>Mon <em style="font-style:italic;color:var(--ocean)">Panier</em></h1>
+  <div class="breadcrumb"><a href="index.html">Accueil</a> &nbsp;/&nbsp; Mon Panier</div>
+</div>
+
+<div class="cart-page">
+  <div class="cart-items-side" id="cart-items-side"></div>
+  <div class="order-summary" id="order-summary" style="display:none">
+    <div class="os-title">Résumé de commande</div>
+    <div class="os-line"><span>Sous-total</span><strong id="os-sub">—</strong></div>
+    <div class="os-line"><span>Livraison</span><strong id="os-ship">—</strong></div>
+    <div class="os-free" id="os-free-msg" style="display:none">✓ Livraison offerte !</div>
+    <div class="promo-row"><input type="text" placeholder="Code promo" id="promo-input"><button onclick="applyPromo()">Appliquer</button></div>
+    <div class="os-total"><span>Total</span><strong id="os-total">—</strong></div>
+    <button class="btn-dark" style="width:100%;padding:16px;font-size:11px" onclick="window.location='paiement.html'">Passer commande</button>
+    <div class="os-trust">
+      <div class="os-trust-item"><span>🔒</span> Paiement 100% sécurisé</div>
+      <div class="os-trust-item"><span>↩</span> Retours gratuits 30 jours</div>
+      <div class="os-trust-item"><span>🌊</span> Service client 7j/7</div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-head"><h3>Votre Sélection <span id="cart-label" style="font-family:'Poppins';font-size:13px;color:var(--stone);font-weight:400"></span></h3><button class="cart-close" onclick="closeCart()">✕</button></div>
+  <div class="cart-body" id="cart-body"></div>
+  <div class="cart-foot" id="cart-foot" style="display:none"><div class="cart-sub"><span>Sous-total</span><strong id="cart-total"></strong></div><p class="cart-note">Livraison calculée à l'étape suivante</p><button class="btn-checkout" onclick="checkout()">Finaliser la commande</button></div>
+</div>
+<div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span id="toast-msg"></span></div>
+
+<footer class="site-footer"><div class="footer-inner">
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="index.html" class="logo"><span class="logo-main">AQUAZUR</span><span class="logo-sub">L'Évasion Aquatique</span></a><p>Des pièces pensées pour l'été aquatique. Plage, piscine, bord de mer — avec style.</p></div>
+    <div class="footer-col"><h5>Collections</h5><ul><li><a href="boutique.html?filter=nouveautes">Nouveautés</a></li><li><a href="boutique.html">Best-sellers</a></li></ul></div>
+    <div class="footer-col"><h5>Service</h5><ul><li><a href="contact.html">Livraison</a></li><li><a href="contact.html">Retours</a></li></ul></div>
+    <div class="footer-col"><h5>Légal</h5><ul><li><a href="#">CGV</a></li><li><a href="#">Confidentialité</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 AQUAZUR — L'Évasion Aquatique</p><div class="pay-row"><span class="pay-chip">VISA</span><span class="pay-chip">MC</span><span class="pay-chip">AMEX</span><span class="pay-chip">PAYPAL</span></div></div>
+</div></footer>
+
+<script src="products.js"></script>
+<script src="_cart.js"></script>
+<script>
+if(typeof PRODUCTS==='undefined'){var PRODUCTS=[
+  {id:1,name:"Paddle Gonflable Bass Hunter 11'6\"",category:"Paddles",price:449.00,original:549.00,badge:"new",emoji:"🏄",img:"paddle-1.jpg.jpg",images:["paddle-1.jpg.jpg","paddle-2.jpg.jpg","paddle-3.jpg.jpg"],stars:4.9,reviews:128,desc:"Stand Up Paddle gonflable ultra-stable.",details:"Dimensions : 350×86×15 cm. Poids max : 195 kg.",filter:["nouveautes","populaire","promo"]},
+  {id:2,name:"Seaglide Spinera Catua",category:"Seaglides",price:1290.00,original:1490.00,badge:"new",emoji:"🤿",img:"seaglide-1.jpg.jpg",images:["seaglide-1.jpg.jpg","seaglide-2.jpg.jpg","seaglide-3.jpg.jpg"],stars:4.9,reviews:34,desc:"Scooter sous-marin connecté Spinera.",details:"Moteur 3 vitesses. Étanche.",filter:["nouveautes","populaire","promo"]},
+  {id:3,name:"Chaise Flottante Tropicale",category:"Matelas Gonflables",price:39.90,original:54.90,badge:"sale",emoji:"🪑",img:"chaise-1.jpg.jpg",images:["chaise-1.jpg.jpg","chaise-2.jpg.jpg","chaise-3.jpg.jpg"],stars:4.8,reviews:156,desc:"Chaise longue gonflable flottante.",details:"Dimensions : 76×41×61 cm.",filter:["nouveautes","populaire","promo"]},
+  {id:4,name:"AirFlow Mini Ventilateur Portable",category:"Accessoires",price:29.90,original:39.90,badge:"new",emoji:"💨",img:"airflow-1.jpg.jpg",images:["airflow-1.jpg.jpg","airflow-2.jpg.jpg","airflow-3.jpg.jpg"],stars:4.9,reviews:203,desc:"Mini ventilateur portable AirFlow.",details:"3 vitesses. Batterie USB-C 8h.",filter:["nouveautes","populaire","promo"]}
+];}
+if(typeof fmt==='undefined'){function fmt(n){return n.toFixed(2).replace('.',',');}}
+function getProductById(id){return PRODUCTS.find(x=>x.id===id)}
+
+function renderPageCart(){
+  const side=document.getElementById('cart-items-side');
+  const summary=document.getElementById('order-summary');
+  if(!cart.length){
+    side.innerHTML=`<div class="empty-cart"><div class="ec-emoji">🌊</div><h2>Votre panier est vide</h2><p>Découvrez nos bouées, transats, matelas et seaglides et commencez votre sélection.</p><a href="boutique.html" class="btn-dark">Découvrir la boutique</a></div>`;
+    summary.style.display='none';return;
+  }
+  summary.style.display='block';
+  const sub=cartSubtotal();
+  const shipping=sub>=80?0:5.90;
+  const total=sub+shipping;
+  document.getElementById('os-sub').textContent=fmt(sub)+' €';
+  document.getElementById('os-ship').textContent=shipping===0?'Offerte':fmt(shipping)+' €';
+  document.getElementById('os-free-msg').style.display=sub>=80?'block':'none';
+  document.getElementById('os-total').textContent=fmt(total)+' €';
+
+  side.innerHTML=`
+    <div class="cart-items-head"><h2>${cart.length} pièce${cart.length>1?'s':''} sélectionnée${cart.length>1?'s':''}</h2><span>${fmt(sub)} €</span></div>`+
+    cart.map(item=>{
+      const p=getProductById(item.id);
+      return`<div class="page-cart-item">
+        <div class="pci-img">${item.emoji}</div>
+        <div>
+          <div class="pci-cat">${p?p.category:''}</div>
+          <div class="pci-name">${item.name}</div>
+          <div class="pci-price">${fmt(item.price)} € / unité</div>
+          <div class="pci-qty">
+            <button class="qty-btn" onclick="cQty(${item.id},-1);renderPageCart();renderCart()">−</button>
+            <span class="qty-val">${item.qty}</span>
+            <button class="qty-btn" onclick="cQty(${item.id},1);renderPageCart();renderCart()">+</button>
+          </div>
+        </div>
+        <div class="pci-right">
+          <div class="pci-total">${fmt(item.price*item.qty)} €</div>
+          <button class="pci-remove" onclick="cRemove(${item.id});renderPageCart();renderCart()">Retirer</button>
+        </div>
+      </div>`;
+    }).join('');
+}
+
+function applyPromo(){
+  const v=document.getElementById('promo-input').value.trim().toUpperCase();
+  if(v==='AQUAZUR20') showToast('Code −20 % appliqué !');
+  else if(v) showToast('Code invalide ou expiré');
+}
+
+renderCart();
+renderPageCart();
+window.addEventListener('scroll',()=>{
+  document.getElementById('main-header').classList.toggle('scrolled',scrollY>60);
+});
+</script>
+</body></html>
