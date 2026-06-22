@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -112,6 +113,7 @@
     <div class="nav-right"><nav class="site-nav"><a href="contact.html">Contact</a></nav>
       <div class="header-actions">
         <button class="btn-icon" onclick="openCart()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cart-badge" id="cart-badge">0</span></button>
+        <button class="btn-icon hamburger" onclick="toggleMenu()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
       </div>
     </div>
   </div>
@@ -494,5 +496,6 @@ if(!cart.length){
   s.style.display='block';
   s.innerHTML='<span class="c-icon">🛒</span><h2>Panier vide</h2><p>Ajoutez des produits avant de passer commande.</p><a href="boutique.html" class="btn-dark" style="display:inline-block;padding:16px 36px">Découvrir la boutique</a>';
 }
+function toggleMenu(){const nav=document.querySelector('.nav-left');if(!nav)return;if(nav.style.display==='flex'){nav.style.display='';}else{nav.style.cssText='display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:var(--ivory);padding:20px 24px;border-bottom:2px solid var(--border);gap:4px;z-index:99;';}}
 </script>
 </body></html>
