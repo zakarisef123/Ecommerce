@@ -9,6 +9,7 @@
 <style>
 .hero-video{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#071828 url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1920&q=80') center/cover no-repeat}
 .hero-yt{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.hero-yt video{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:177.78vh;height:56.25vw;min-width:100%;min-height:100%;pointer-events:none;object-fit:cover}
 .hero-yt iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:177.78vh;height:56.25vw;min-width:100%;min-height:100%;pointer-events:none}
 .hero-video-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,30,50,.72) 0%,rgba(26,58,74,.55) 60%,rgba(10,30,50,.45) 100%);z-index:1}
 .hero-video-content{position:relative;z-index:2;text-align:center;padding:48px 24px;max-width:760px;margin:0 auto;width:100%}
@@ -50,7 +51,7 @@
 .prod-card>.p-cat,.prod-card>.p-rating,.prod-card>.p-name,.prod-card>.p-price{padding-left:16px;padding-right:16px}
 .prod-card>.p-cat{padding-top:14px}
 .prod-card>.p-price{padding-bottom:16px}
-.prod-card .revs{color:#2C1810}.prod-card .p-name{color:#2C1810}.prod-card .price-c{color:#7A2E00}
+.prod-card .p-cat{color:#1A0A00}.prod-card .revs{color:#2C1810}.prod-card .p-name{color:#2C1810}.prod-card .price-c{color:#7A2E00}.prod-card .price-o{color:#6B4226}.prod-card .stars{color:#FFE066}
 .prod-card:hover{box-shadow:0 8px 32px rgba(255,124,0,.18);transform:translateY(-3px)}
 .prod-card:hover .prod-img-in{transform:scale(1.05)}
 .prod-card:hover .prod-over{opacity:1}
@@ -117,8 +118,14 @@
 </header>
 
 <section class="hero-video">
-  <div class="hero-yt">
-    <iframe src="https://www.youtube.com/embed/bs-dKe4W4bU?autoplay=1&mute=1&loop=1&playlist=bs-dKe4W4bU&controls=0&disablekb=1&fs=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&start=3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <div class="hero-yt" id="hero-yt">
+    <!-- HTML5 video for mobile autoplay (plays on all devices) -->
+    <video id="hero-vid" autoplay muted loop playsinline preload="none"
+      poster="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1920&q=80">
+      <source src="https://cdn.pixabay.com/video/2022/07/23/125292-733012064_large.mp4" type="video/mp4">
+    </video>
+    <!-- YouTube iframe for desktop (hidden on mobile via JS) -->
+    <iframe id="hero-iframe" src="https://www.youtube.com/embed/bs-dKe4W4bU?autoplay=1&mute=1&loop=1&playlist=bs-dKe4W4bU&controls=0&disablekb=1&fs=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&start=3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </div>
   <div class="hero-video-overlay"></div>
   <div class="hero-video-content">
@@ -221,7 +228,15 @@
 <script src="_cart.js"></script>
 <script>
 function toggleMenu(){const nav=document.querySelector('.nav-left');if(!nav)return;if(nav.style.display==='flex'){nav.style.display='';}else{nav.style.cssText='display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:var(--ivory);padding:20px 24px;border-bottom:2px solid var(--border);gap:4px;z-index:99;';}}
-function starsHTML(n){return'★'.repeat(Math.floor(n))+(n%1>=.5?'½':'')}
+// On mobile: use <video> (always works), hide iframe; on desktop: use iframe, hide video
+(function(){
+  var isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)||window.innerWidth<768;
+  var vid=document.getElementById('hero-vid');
+  var ifr=document.getElementById('hero-iframe');
+  if(isMobile){ifr.style.display='none';vid.load();vid.play().catch(function(){});}
+  else{vid.style.display='none';}
+})();
+function starsHTML(n){return'★'.repeat(Math.round(n))}
 const colors=['c1','c2','c3','c4'];
 document.getElementById('home-products').innerHTML=PRODUCTS.slice(0,4).map((p,i)=>`
 <div class="prod-card" onclick="window.location='produit.html?id=${p.id}'">
