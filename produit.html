@@ -61,7 +61,7 @@
 .prod-card>.p-cat,.prod-card>.p-rating,.prod-card>.p-name,.prod-card>.p-price{padding-left:16px;padding-right:16px}
 .prod-card>.p-cat{padding-top:14px}
 .prod-card>.p-price{padding-bottom:16px}
-.prod-card .revs{color:#2C1810}.prod-card .p-name{color:#2C1810}.prod-card .price-c{color:#7A2E00}
+.prod-card .p-cat{color:#1A0A00}.prod-card .revs{color:#2C1810}.prod-card .p-name{color:#2C1810}.prod-card .price-c{color:#7A2E00}.prod-card .price-o{color:#6B4226}.prod-card .stars{color:#FFE066}
 .prod-card:hover{box-shadow:0 8px 32px rgba(255,124,0,.18);transform:translateY(-3px)}
 .prod-card:hover .prod-img-in{transform:scale(1.05)}
 .prod-card:hover .prod-over{opacity:1}
@@ -171,7 +171,7 @@
 <script src="products.js"></script>
 <script src="_cart.js"></script>
 <script>
-function starsHTML(n){return'★'.repeat(Math.floor(n))+(n%1>=.5?'½':'')}
+function starsHTML(n){return'★'.repeat(Math.round(n))}
 let qtyN=1,currentId=null;
 function qtyChange(d){qtyN=Math.max(1,qtyN+d);document.getElementById('qty-val').textContent=qtyN}
 
